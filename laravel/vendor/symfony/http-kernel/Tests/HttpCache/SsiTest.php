@@ -120,11 +120,9 @@ class SsiTest extends TestCase
         $this->assertEquals('<?php echo "<?"; ?>php <?php echo "<?"; ?> <?php echo "<%"; ?> <?php echo "<s"; ?>cript language=php>', $response->getContent());
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testProcessWhenNoSrcInAnSsi()
     {
+        $this->expectException('RuntimeException');
         $ssi = new Ssi();
 
         $request = Request::create('/');
@@ -160,11 +158,9 @@ class SsiTest extends TestCase
         $this->assertEquals('foo', $ssi->handle($cache, '/', '/alt', true));
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testHandleWhenResponseIsNot200()
     {
+        $this->expectException('RuntimeException');
         $ssi = new Ssi();
         $response = new Response('foo');
         $response->setStatusCode(404);
@@ -201,7 +197,7 @@ class SsiTest extends TestCase
         if (\is_array($response)) {
             $cache->expects($this->any())
                   ->method('handle')
-                  ->will(\call_user_func_array([$this, 'onConsecutiveCalls'], $response))
+                  ->will($this->onConsecutiveCalls(...$response))
             ;
         } else {
             $cache->expects($this->any())

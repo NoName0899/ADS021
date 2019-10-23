@@ -17,9 +17,8 @@ class CreateUnidadesTable extends Migration
             $table->bigIncrements('id');
             $table->string('unidade');
             $table->string('proprietario');
-            $table->integer('cnpj');
             $table->string('email');
-            $table->integer('telefone');
+            $table->string('telefone');
 
             $table->bigInteger('condominio_id')->unsigned();
             $table->foreign('condominio_id')->references('id')->on('condominios')->onDelete('cascade');

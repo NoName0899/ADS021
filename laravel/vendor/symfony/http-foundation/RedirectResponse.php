@@ -30,9 +30,9 @@ class RedirectResponse extends Response
      *
      * @throws \InvalidArgumentException
      *
-     * @see http://tools.ietf.org/html/rfc2616#section-10.3
+     * @see https://tools.ietf.org/html/rfc2616#section-10.3
      */
-    public function __construct($url, $status = 302, $headers = [])
+    public function __construct(?string $url, int $status = 302, array $headers = [])
     {
         parent::__construct('', $status, $headers);
 
