@@ -1,0 +1,25 @@
+body{
+    background: #000000;
+    color: #fff;
+}
+.table{
+    color:#fff;
+    background: #202020;
+}
+
+.form-control{
+     color:#fff;
+     background: #484848;
+     border-color: #A9A9A9;
+ }
+
+.form-control:enabled{
+    color:#fff;
+    background: #484848;
+    border-color: #A9A9A9;
+}
+
+.form-control::placeholder{
+    color:#BEBEBE;
+}
+
