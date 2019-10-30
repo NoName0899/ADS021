@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Moradores extends Model
  {
-    protected $fillable = ['id', 'nome'];
+    protected $fillable = ['id', 'email', 'nome', 'cpf', 'telefone', 'marca', 'veiculo', 'situacao', 'condominio_id', 'unidade_id'];
     protected $dates = ['deleted_at'];
 
     public function condominio()

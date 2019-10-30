@@ -20,5 +20,6 @@ Route::group(['prefix' => 'morador'],function (){
     Route::get('formulario','MoradorController@criar');
     Route::get('editar/{id}','MoradorController@editar');
     Route::get('remover/{id}','MoradorController@remover');
-    Route::get('salvar','MoradorController@listar');
+    Route::post('salvar','MoradorController@salvar');
+    Route::post('editar/salvar','MoradorController@salvar');
 });

@@ -15,13 +15,13 @@ class CreateMoradoresTable extends Migration
     {
         Schema::create('moradores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('cpf');
-            $table->string('nome');
             $table->string('email');
+            $table->string('nome');
+            $table->string('cpf');
             $table->string('telefone');
             $table->string('marca');
             $table->string('veiculo');
-            $table->string('placa');
+//            $table->string('placa');
             $table->string('situacao');
 
             $table->bigInteger('condominio_id')->unsigned();

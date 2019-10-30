@@ -36,8 +36,7 @@ class MoradorController extends Controller{
     }
 
     public function salvar(Request $request){
-
-         if($request->id){
+        if($request->id){
             $moradores = Moradores::find($request->id);
             $moradores->fill($request->all());
         } else {
@@ -45,6 +44,6 @@ class MoradorController extends Controller{
         }
 
         $moradores->save();
-        return view('morador/listar');
+        return redirect('morador/listar');
     }
 }

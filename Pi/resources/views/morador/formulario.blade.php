@@ -50,7 +50,7 @@
                 <div id="span">
                     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
                 </div>
-                <form action="/morador/salvar" method="get">
+                <form action="salvar" method="post">
                     @csrf
                     <input type="hidden" name="id" id="id" value="{{$moradores->id}}">
                     <div class="form-row">
@@ -106,7 +106,7 @@
                             <select class="form-control" name="condominio_id">
                                 <option>-- Selecione o Condominio --</option>
                                 @foreach($condominios as $cond)
-                                    <option>{{$cond->nome}}</option>
+                                    <option value="{{$cond->id}}">{{$cond->nome}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -115,7 +115,7 @@
                             <select class="form-control" name="unidade_id">
                                 <option>-- Selecione a Unidade --</option>
                                 @foreach($unidades as $unid)
-                                    <option>{{$unid->nome}}</option>
+                                    <option value="{{$unid->id}}">{{$unid->nome}}</option>
                                 @endforeach
                             </select>
                         </div>
