@@ -3,47 +3,80 @@
 namespace App\Http\Controllers;
 
 use App\Condominios;
+use App\Http\Requests\MoradorRequest;
 use App\Moradores;
 use App\Unidades;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class MoradorController extends Controller{
-    public function listar(){
-        $moradores = Moradores::all();
-        return view('morador/listar', compact('moradores'));
+class MoradorController extends Controller
+{
+    public function listar()
+    {
+        $morador = Moradores::all();
+        return view('morador/listar', compact('morador'));
     }
 
-    public function criar(Request $request){
-        $moradores = new Moradores();
-        $condominios = Condominios::all();
-        $unidades = Unidades::all();
-        return view('morador/formulario', compact('moradores','unidades', 'condominios'));
+    public function criar(Request $request)
+    {
+        $morador = new Moradores();
+        $condominio = Condominios::all();
+        $unidade = Unidades::all();
+        return view('morador/formulario', compact('morador', 'unidade', 'condominio'));
     }
 
-    public function editar($id){
-        $moradores = Moradores::find($id);
-        $condominios = Condominios::all();
-        $unidades = Unidades::all();
+    public function editar($id)
+    {
+        $morador = Moradores::find($id);
+        $condominio = Condominios::all();
+        $unidade = Unidades::all();
 
-        return view('morador/formulario', compact('moradores', 'condominios', 'unidades'));
+        return view('morador/formulario', compact('morador', 'condominio', 'unidade'));
     }
 
-    public function remover($id){
-        $moradores = Moradores::find($id);
-        $moradores->delete();
+    public function remover($id)
+    {
+        $morador = Moradores::find($id);
+        $morador->delete();
         return redirect('morador/listar');
     }
 
-    public function salvar(Request $request){
-        if($request->id){
-            $moradores = Moradores::find($request->id);
-            $moradores->fill($request->all());
+    public function salvar(MoradorRequest $request){
+//        $this->validate('rules');
+        if ($request->id) {
+            $morador = Moradores::find($request->id);
+            $morador->fill($request->all());
+
         } else {
-             $moradores = new Moradores($request->all());
+            $morador = new Moradores($request->all());
+
         }
 
-        $moradores->save();
+
+        if ($request->hasFile('arquivo')) {
+            $morador->arquivo = $request->arquivo->store('img');
+        }
+
+        $morador->save();
         return redirect('morador/listar');
+    }
+
+    public function verificarEmail($email)
+    {
+        return $morador = Moradores::where('email', $email)->count();
+    }
+
+    public function verificarCpf($cpf)
+    {
+        return $morador = Moradores::where('cpf', $cpf)->count();
+    }
+
+    public function verificarTelefone($telefone)
+    {
+        return $morador = Moradores::where('telefone', $telefone)->count();
+    }
+
+    public function verificarPlaca($placa)
+    {
+        return $morador = Moradores::where('placa', $placa)->count();
     }
 }

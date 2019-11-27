@@ -6,31 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Condominios extends Model
 {
-    public function areas(){
-        return $this->hasMany('App/Areas');
+    protected $fillable = ['id', 'cnpj', 'nome', 'endereco', 'cep', 'cidade', 'bairro', 'uf'];
+    protected $dates = ['deleted_at'];
+
+    public function area(){
+        return $this->hasMany('App\Areas');
     }
 
-    public function reservas(){
-        return $this->hasMany('App/Reservas');
+    public function reserva(){
+        return $this->hasMany('App\Reservas');
     }
 
-    public function unidades(){
-        return $this->hasMany('App/Unidades');
+    public function unidade(){
+        return $this->hasMany('App\Unidades');
     }
 
-//    public function moradores(){
-//        return $this->hasMany('App/Moradores');
-//    }
-
-    public function visitantes(){
-        return $this->hasMany('App/Visitantes');
+    public function visitante(){
+        return $this->hasMany('App\Visitantes');
     }
 
-//    protected $table = 'categorias';
-//    protected $fillable = ['nome'];
-//
-//    public function moradores()
-//    {
-//        return $this->hasMany(App\Produto::class,'categoria_id','id');
-//    }
+    public function getCnpj($cnpj){
+        return ucfirst($cnpj);
+    }
 }

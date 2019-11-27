@@ -21,8 +21,9 @@ class CreateMoradoresTable extends Migration
             $table->string('telefone');
             $table->string('marca');
             $table->string('veiculo');
-//            $table->string('placa');
+            $table->string('placa');
             $table->string('situacao');
+            $table->string('arquivo')->nullable();
 
             $table->bigInteger('condominio_id')->unsigned();
             $table->foreign('condominio_id')->references('id')->on('condominios')->onDelete('cascade');

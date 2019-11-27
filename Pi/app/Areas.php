@@ -4,13 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Areas extends Model
-{
-    public function reservas(){
-        return $this->hasMany('App/Reservas');
+class Areas extends Model{
+
+    protected $fillable = ['id', 'area', 'situacao','condominio_id'];
+    protected $dates = ['deleted_at'];
+
+    public function reserva(){
+        return $this->hasMany('App\Reservas');
     }
 
-    public function condominios(){
-        return $this->belongsTo('App/Condominios');
+    public function condominio(){
+        return $this->belongsTo('App\Condominios');
     }
 }
